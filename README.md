@@ -9,7 +9,7 @@ You type a natural-language description (“oatmeal, banana, cappuccino”), and
 - stores each item as a separate row in Google Sheets  
 - displays recent entries synced from the sheet  
 
-Everything runs on free services: GitHub Pages + Google Apps Script + Google Sheets.
+Everything runs on free services: Cloudflare(/GitHub Pages) + Google Apps Script + Google Sheets.
 
 ---
 
@@ -19,6 +19,8 @@ Everything runs on free services: GitHub Pages + Google Apps Script + Google She
 - All entries sync across phone and laptop automatically.  
 - No servers, no databases, no frameworks.  
 - Fully private: OpenAI key stays inside Apps Script, never exposed to the frontend.
+- Good, low effort way of tracking calories approximatelly. Good for people who want to start counting calories, with very minimal need for engagement.
+- It can simply be extended to include other nutrients, allergens, tracking FODMAP foods, etc.
 
 ---
 
@@ -45,7 +47,7 @@ Everything runs on free services: GitHub Pages + Google Apps Script + Google She
    In index.html, set:
    const ENDPOINT = "YOUR_EXEC_URL_HERE";
 
-5. Host (I'm using Cloudflare Pages, since it can be used to host a private repo).   
+5. Host (I'm using Cloudflare Pages, since it can be used to host a private repo, to avoid spam).   
    Place index.html and README.md in a repository.  
    Share it to Cloudflare pages.  
    Open the URL on your phone or laptop.
@@ -58,5 +60,6 @@ Everything runs on free services: GitHub Pages + Google Apps Script + Google She
 - README.md
 - favicon.png
 - share-image.png
+
 
 A simple, practical way to track meals using nothing but a browser, a Google Sheet, and a bit of AI.
