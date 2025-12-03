@@ -79,17 +79,22 @@ async function submitEntry() {
 
   addToHistory(text);
   document.getElementById("entry").value = "";
+  document.getElementById("status").innerText = "Submitting...";
 
   const form = new FormData();
   form.append("entry", text);
 
-  const response = await fetch(ENDPOINT, {
-    method: "POST",
-    body: form
-  });
+  try {
+    const response = await fetch(ENDPOINT, {
+      method: "POST",
+      body: form
+    });
 
-  const result = await response.text();
-  document.getElementById("status").innerText = "sent";
+    const result = await response.text();
+    document.getElementById("status").innerText = result;
+  } catch (err) {
+    document.getElementById("status").innerText = "error";
+  }
 }
 
 </script>
