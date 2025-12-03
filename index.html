@@ -18,7 +18,7 @@
 <h1>Food Log</h1>
 <p>Type anything about what you ate:</p>
 
-<textarea id="entry" placeholder="Example: 'Lunch: chicken burgers with lettuce'"></textarea>
+<textarea id="entry" placeholder="Example: 'Lunch: chicken burgers with salad'"></textarea>
 
 <button onclick="submitEntry()">Submit</button>
 
@@ -28,7 +28,7 @@
 <div id="history"></div>
 
 <script>
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbxSukLiG3zgCUKz8vZLoTyYEGSuRFY404rFbVX0a8kDGKTjvaaEKZ7o62W8jn0X4g_h/exec";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbwNNp8nsY64DJYrK8IPqbSsehfNZB4M2MtktL5uJyZdZeP-tLdMmQIaPr_U2au6KUv4/exec";
 const HISTORY_KEY = "foodlog_history";
 
 // ---------------------------
@@ -79,22 +79,17 @@ async function submitEntry() {
 
   addToHistory(text);
   document.getElementById("entry").value = "";
-  document.getElementById("status").innerText = "Submitting...";
 
   const form = new FormData();
   form.append("entry", text);
 
-  try {
-    const response = await fetch(ENDPOINT, {
-      method: "POST",
-      body: form
-    });
+  const response = await fetch(ENDPOINT, {
+    method: "POST",
+    body: form
+  });
 
-    const result = await response.text();
-    document.getElementById("status").innerText = result;
-  } catch (err) {
-    document.getElementById("status").innerText = "error";
-  }
+  const result = await response.text();
+  document.getElementById("status").innerText = "sent";
 }
 
 </script>
