@@ -77,30 +77,21 @@ async function submitEntry() {
   const text = document.getElementById("entry").value.trim();
   if (!text) return;
 
-  // Add to local history
   addToHistory(text);
-
-  // Clear textbox
   document.getElementById("entry").value = "";
 
-  document.getElementById("status").innerText = "Submitting...";
+  const form = new FormData();
+  form.append("entry", text);
 
-  try {
-    const response = await fetch(ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ entry: text })
-    });
+  const response = await fetch(ENDPOINT, {
+    method: "POST",
+    body: form
+  });
 
-    const result = await response.json();
-    document.getElementById("status").innerText = result.status;
-
-  } catch (err) {
-    document.getElementById("status").innerText = "error";
-  }
+  const result = await response.text();
+  document.getElementById("status").innerText = "sent";
 }
+
 </script>
 
 </body>
