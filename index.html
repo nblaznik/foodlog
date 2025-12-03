@@ -4,42 +4,116 @@
   <meta charset="utf-8">
   <title>Food Log</title>
   <style>
-    body { font-family: sans-serif; margin: 40px; max-width: 500px; text-align: center; }
-    textarea { width: 100%; height: 120px; padding: 8px; margin: 10px 0; }
-    button { padding: 10px 15px; cursor: pointer; margin-bottom: 20px; }
-    #status { margin-top: 10px; }
-    .entry { padding: 10px; background: #f0f0f0; border-radius: 6px; margin-bottom: 8px; cursor: pointer; }
-    .entry:hover { background: #e2e2e2; }
-    h2 { margin-top: 40px; }
+    body {
+      font-family: sans-serif;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fafafa;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 450px;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin: 15px 0;
+      font-size: 14px;
+      resize: none;
+    }
+
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    button:hover {
+      background: #45a046;
+    }
+
+    #status {
+      margin-top: 8px;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    h2 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .entry {
+      padding: 10px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s;
+    }
+
+    .entry:hover {
+      background: #eaeaea;
+    }
+
+    #history {
+      max-height: 250px;
+      overflow-y: auto;
+    }
   </style>
 </head>
 <body>
-<h1>Food Log</h1>
-<p>Type anything about what you ate:</p>
 
-<textarea id="entry" placeholder="Example: 'Lunch: chicken burgers with lettuce'"></textarea>
+<div class="container">
 
-<button onclick="submitEntry()">Submit</button>
+  <h1>Food Log</h1>
+  <p>Describe what you ate:</p>
 
-<p id="status"></p>
+  <textarea id="entry" placeholder="Example: 'Lunch: pasta, salad, iced coffee'"></textarea>
 
-<h2>Recent Entries</h2>
-<div id="history"></div>
+  <button onclick="submitEntry()">Submit</button>
+
+  <p id="status"></p>
+
+  <h2>Recent Entries</h2>
+  <div id="history"></div>
+
+</div>
 
 <script>
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbzaWHemhcsJNmHPrwoiNwDbJcE2KRBYmm8_cHI1y1kfVruhztG9SZrgbo2ullWCYQWJ/exec";
 const HISTORY_KEY = "foodlog_history";
 
-// ---------------------------
-// Load history on page load
-// ---------------------------
+// Load history on startup
 document.addEventListener("DOMContentLoaded", loadHistory);
 
 function loadHistory() {
   const historyDiv = document.getElementById("history");
   historyDiv.innerHTML = "";
 
-  const saved = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
+  const saved = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]").slice(0, 15);
 
   saved.forEach(item => {
     const div = document.createElement("div");
@@ -53,32 +127,22 @@ function loadHistory() {
   });
 }
 
-// ---------------------------
-// Save entry to local history
-// ---------------------------
 function addToHistory(text) {
   let saved = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
-
-  // Add newest at top
   saved.unshift(text);
-
-  // Keep only last 20
-  saved = saved.slice(0, 20);
-
+  saved = saved.slice(0, 15);  // limit to last 15
   localStorage.setItem(HISTORY_KEY, JSON.stringify(saved));
   loadHistory();
 }
 
-// ---------------------------
-// Submit entry
-// ---------------------------
 async function submitEntry() {
   const text = document.getElementById("entry").value.trim();
   if (!text) return;
 
   addToHistory(text);
   document.getElementById("entry").value = "";
-  document.getElementById("status").innerText = "Submitting...";
+
+  showStatus("Submitting...", "#444");
 
   const form = new FormData();
   form.append("entry", text);
@@ -89,17 +153,31 @@ async function submitEntry() {
       body: form
     });
 
-    const msg = await response.text();
-    document.getElementById("status").innerText = msg;
+    const msg = await response.json();
 
+    if (msg.status === "ok") {
+      showStatus("OK ✓", "green");
+    } else {
+      showStatus("Error", "red");
+    }
   } catch (err) {
-    document.getElementById("status").innerText = "error";
+    showStatus("Network error", "red");
   }
+}
+
+// Nicely fading status message
+function showStatus(message, color) {
+  const el = document.getElementById("status");
+  el.innerText = message;
+  el.style.color = color;
+  el.style.opacity = 1;
+
+  setTimeout(() => {
+    el.style.opacity = 0;
+  }, 2000);
 }
 
 </script>
 
 </body>
 </html>
-
-
