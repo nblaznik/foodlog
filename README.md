@@ -7,10 +7,8 @@
 
   <tr>
     <td style="vertical-align: top;">
-
       A small, lightweight tool for logging what you eat.  
       You type a natural-language description (“oatmeal, banana, cappuccino”), and the system:
-
       <ul>
         <li>parses individual foods</li>
         <li>estimates macros</li>
@@ -18,9 +16,7 @@
         <li>works on phone and laptop without setup</li>
         <li>keeps your OpenAI key inside Apps Script</li>
       </ul>
-
     </td>
-
     <td style="vertical-align: top; text-align:center;">
       <img src="screenshot_app.png" width="350">
     </td>
@@ -91,6 +87,7 @@ Everything runs on free services: Cloudflare(/GitHub Pages) + Google Apps Script
 
 
 A simple, practical way to track meals using nothing but a browser, a Google Sheet, and a bit of AI.
+
 
 
 
