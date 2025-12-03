@@ -1,8 +1,8 @@
 # Food Log (AI-Powered)
-<table>
+<table border="0" style="border-collapse: collapse;">
   <colgroup>
-    <col style="width:50%;">
-    <col style="width:50%;">
+    <col style="width:20%;">
+    <col style="width:70%;">
   </colgroup>
 
   <tr>
@@ -10,11 +10,11 @@
       A small, lightweight tool for logging what you eat.  
       You type a natural-language description (“oatmeal, banana, cappuccino”), and the system:
       <ul>
-        <li>parses individual foods</li>
-        <li>estimates macros</li>
-        <li>writes everything directly to your Google Sheet</li>
-        <li>works on phone and laptop without setup</li>
-        <li>keeps your OpenAI key inside Apps Script</li>
+        <li>sends it to a Google Apps Script backend</li>
+        <li>uses OpenAI to break it into individual food items</li>
+        <li>estimates kcal, protein, carbs, and fats</li>
+        <li>stores each item as a separate row in Google Sheets</li>
+        <li>displays recent entries synced from the sheet</li>
       </ul>
     </td>
     <td style="vertical-align: top; text-align:center;">
@@ -22,13 +22,6 @@
     </td>
   </tr>
 </table>
-
-  
-- sends it to a Google Apps Script backend  
-- uses OpenAI to break it into individual food items  
-- estimates kcal, protein, carbs, and fats  
-- stores each item as a separate row in Google Sheets  
-- displays recent entries synced from the sheet  
 
 Everything runs on free services: Cloudflare(/GitHub Pages) + Google Apps Script + Google Sheets.
 
@@ -87,6 +80,7 @@ Everything runs on free services: Cloudflare(/GitHub Pages) + Google Apps Script
 
 
 A simple, practical way to track meals using nothing but a browser, a Google Sheet, and a bit of AI.
+
 
 
 
