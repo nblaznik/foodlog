@@ -28,7 +28,7 @@
 <div id="history"></div>
 
 <script>
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbz3-Yzw4tmb-iOBBuw_HCy9zSHhDJyv8qIx28fkDfpULuSJKVsRb_64gAD79OE3dQcq/exec";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbwkJvUSJcPpjgv1VMJQFoDTrz_qGKE-sBlk7SDxaUG0q1Er5yJlgYpIXDXO-IkbaX0L/exec";
 const HISTORY_KEY = "foodlog_history";
 
 // ---------------------------
@@ -77,26 +77,28 @@ async function submitEntry() {
   const text = document.getElementById("entry").value.trim();
   if (!text) return;
 
-  // Add to local history immediately
+  // Add to local history
   addToHistory(text);
 
-  // Clear text box
+  // Clear textbox
   document.getElementById("entry").value = "";
 
-  // Send raw text to Apps Script
+  document.getElementById("status").innerText = "Submitting...";
+
   try {
     const response = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"      // REQUIRED
-    },
-    body: JSON.stringify({ entry: text })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ entry: text })
     });
 
     const result = await response.json();
     document.getElementById("status").innerText = result.status;
+
   } catch (err) {
-    document.getElementById("status").innerText = "error submitting";
+    document.getElementById("status").innerText = "error";
   }
 }
 </script>
