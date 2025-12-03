@@ -1,8 +1,8 @@
 # Food Log (AI-Powered)
 <table border="0" style="border-collapse: collapse;">
   <colgroup>
-    <col style="width:20%;">
     <col style="width:70%;">
+    <col style="width:20%;">
   </colgroup>
 
   <tr>
@@ -80,6 +80,7 @@ Everything runs on free services: Cloudflare(/GitHub Pages) + Google Apps Script
 
 
 A simple, practical way to track meals using nothing but a browser, a Google Sheet, and a bit of AI.
+
 
 
 
