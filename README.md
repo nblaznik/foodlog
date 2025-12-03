@@ -1,44 +1,29 @@
 # Food Log (AI-Powered)
-<table border="0" style="border-collapse: collapse;">
-  <colgroup>
-    <col style="width:70%;">
-    <col style="width:20%;">
-  </colgroup>
 
-  <tr>
-    <td style="vertical-align: top;">
-      A small, lightweight tool for logging what you eat.  
-      You type a natural-language description (“oatmeal, banana, cappuccino”), and the system:
-      <ul>
-        <li>sends it to a Google Apps Script backend</li>
-        <li>uses OpenAI to break it into individual food items</li>
-        <li>estimates kcal, protein, carbs, and fats</li>
-        <li>stores each item as a separate row in Google Sheets</li>
-        <li>displays recent entries synced from the sheet</li>
-      </ul>
-    </td>
-    <td style="vertical-align: top; text-align:center;">
-      <img src="screenshot_app.png" width="350">
-    </td>
-  </tr>
-</table>
+A small, lightweight tool for logging what you eat.  
+You type a natural-language description (“oatmeal, banana, cappuccino”), and the system:
 
-Everything runs on free services: Cloudflare(/GitHub Pages) + Google Apps Script + Google Sheets.
+- sends it to a Google Apps Script backend  
+- uses OpenAI to break it into individual food items  
+- estimates kcal, protein, carbs, and fats  
+- stores each item as a separate row in Google Sheets  
+- displays recent entries synced from the sheet  
 
+<p align="center">
+  <img src="screenshot_app.png" width="350">
+</p>
 
-<div style="flex: 1; min-width: 250px;">
-  <h2>Why This Is Useful</h2>
-  <ul>
-    <li>Fast food tracking: just type what you ate, no menus or dropdowns.</li>
-    <li>AI handles splitting foods and estimating macros.</li>
-    <li>All entries sync across phone and laptop automatically.</li>
-    <li>No servers, no databases, no frameworks.</li>
-    <li>Fully private: OpenAI key stays inside Apps Script, never exposed to the frontend.</li>
-    <li>Good, low effort way of tracking calories approximately, ideal for getting started with minimal engagement.</li>
-    <li>Easy to extend for nutrients, allergens, FODMAPs and more.</li>
-  </ul>
-</div>
+Everything runs on free services: Cloudflare (or GitHub Pages) + Google Apps Script + Google Sheets.
 
+## Why This Is Useful
+
+- Fast food tracking: just type what you ate, no menus or dropdowns.  
+- AI handles splitting foods and estimating macros.  
+- All entries sync across phone and laptop automatically.  
+- No servers, no databases, no frameworks.  
+- Fully private: OpenAI key stays inside Apps Script, never exposed to the frontend.  
+- Low-effort calorie tracking to help people get started.  
+- Easy to extend for nutrients, allergens, FODMAPs and more.
 
 
 ## How to Set It Up Yourself
@@ -80,6 +65,7 @@ Everything runs on free services: Cloudflare(/GitHub Pages) + Google Apps Script
 
 
 A simple, practical way to track meals using nothing but a browser, a Google Sheet, and a bit of AI.
+
 
 
 
