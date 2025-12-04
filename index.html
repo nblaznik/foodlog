@@ -126,18 +126,16 @@
   <textarea id="entry" placeholder="Example: 'Lunch: pasta, salad, iced coffee'"></textarea>
 
   <button onclick="submitEntry()">Submit</button>
-<div style="pointer-events: none;">
-  <iframe
-    width="339"
-    height="141"
-    seamless
-    frameborder="0"
-    scrolling="no"
-    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRGxfCDcxJiaVzuaExWvUePGWCQY2f1zLJMOyR9ADnKI69O8TN__7iOsiqSCzXyP0TPSrRJu5K50-cV/pubchart?oid=1608343739&amp;format=interactive"
-></iframe>
+  <div style="pointer-events: none;">
+    <iframe width="510" height="212" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRGxfCDcxJiaVzuaExWvUePGWCQY2f1zLJMOyR9ADnKI69O8TN__7iOsiqSCzXyP0TPSrRJu5K50-cV/pubchart?oid=1608343739&amp;format=interactive"></iframe>
+  </div>
+
+  <h2>Recent Entries</h2>
+  <div id="history"></div>
 </div>
+
 <script>
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbzdJKjo5Lcg5le1TYD5AI_KDSKg22V-j3lvx3do6hoKrIW5-czHhEXhUbRBzovlw0y4/exec";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbzt4B6NaAHqjYd8eRewxz71Y3c81iSviIo9jPXYS017LHRTMmOUymX126rUF0KBcSZX/exec";
 const HISTORY_KEY = "foodlog_history";
 
 // Load history on startup
