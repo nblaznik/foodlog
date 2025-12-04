@@ -68,7 +68,7 @@
     }
 
     button {
-      background: #4CAF50;
+      background: hsl(122, 39%, 49%);
       color: white;
       padding: 12px 20px;
       border: none;
@@ -126,14 +126,16 @@
   <textarea id="entry" placeholder="Example: 'Lunch: pasta, salad, iced coffee'"></textarea>
 
   <button onclick="submitEntry()">Submit</button>
-
-  <p id="status"></p>
-
-  <h2>Recent Entries</h2>
-  <div id="history"></div>
-
+<div style="pointer-events: none;">
+  <iframe
+    width="339"
+    height="141"
+    seamless
+    frameborder="0"
+    scrolling="no"
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRGxfCDcxJiaVzuaExWvUePGWCQY2f1zLJMOyR9ADnKI69O8TN__7iOsiqSCzXyP0TPSrRJu5K50-cV/pubchart?oid=1608343739&amp;format=interactive"
+></iframe>
 </div>
-
 <script>
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbzt4B6NaAHqjYd8eRewxz71Y3c81iSviIo9jPXYS017LHRTMmOUymX126rUF0KBcSZX/exec";
 const HISTORY_KEY = "foodlog_history";
